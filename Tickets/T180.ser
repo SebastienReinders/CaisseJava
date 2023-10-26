@@ -1,0 +1,17 @@
+Ticket n°180
+Date : Mon Jun 05 10:42:58 CEST 2023
+
+Articles : 
+	Code barre : 54000001, intitulé : Press, prix : 1.0, qu : 2.2, points : 0, Total ligne : 2.2
+	Code barre : 54000007, intitulé : Lotto, prix : 1.0, qu : 1.0, points : 0, Total ligne : 1.0
+	Code barre : 54000006, intitulé : Alcools, prix : 1.0, qu : 1.0, points : 0, Total ligne : 1.0
+	Code barre : 54000005, intitulé : Legumes, prix : 1.0, qu : 1.0, points : 1, Total ligne : 1.0
+	Code barre : 42154860, intitulé : FREDENT, prix : 3.0, qu : 1.0, points : 0, Total ligne : 3.0
+	Code barre : 54000002, intitulé : Eaux, prix : 1.0, qu : 500.0, points : 0, Total ligne : 500.0
+	Code barre : 54000003, intitulé : Tabac, prix : 1.0, qu : 220.0, points : 0, Total ligne : 220.0
+
+Client : Client : Personne [nom=jean pierre, prenom=dumon, dateNaissance=Tue Jan 01 00:00:00 CET 1985], numéro intervenant : 1, Numéro de carte : 462500987654, Email : are@are.va, Adresse : RGPD, Points : 0
+Sous-total : 728.2€
+Réduction : 72.82€
+Total : 655.38€
+Points gagnés : 656

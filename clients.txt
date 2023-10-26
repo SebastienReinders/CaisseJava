@@ -1,0 +1,6 @@
+Reinders,Sebastien,01/01/2020,1,462500145525,aa@aa.ca,RGPD,0
+Banushi,Arber,01/01/2020,1,46251455212,ff@afeds.xe,RGPD,387
+Reinders Banushi,Vodka,04/06/2022,1,46250025414,gros@chat.al,RGPD,0
+Banushi Reinders,Tippex,01/05/2023,1,46250041744,petit@chat.al,RGPD,0
+jean pierre,dumon,01/01/1985,1,462500987654,are@are.va,RGPD,656
+KOLA,KOLA,01/01/2020,1,462500999999,,RGPD,98

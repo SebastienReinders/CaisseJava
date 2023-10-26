@@ -1,10 +1,17 @@
 package GUI;
 
+import personnes.Client;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class NewClient extends JFrame {
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public NewClient() {
         setTitle("Nouveau client");
@@ -51,6 +58,44 @@ public class NewClient extends JFrame {
         JButton annulerButton = new JButton("Annuler");
         buttonsPanel.add(enregistrerButton);
         buttonsPanel.add(annulerButton);
+
+        // Ajout d'une action au bouton "Enregistrer"
+        enregistrerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String nom = nomTextBox.getText();
+                    String prenom = prenomTextBox.getText();
+                    Date dateNaissance = dateFormat.parse(dateNaissanceTextBox.getText());
+                    long numCarte = Long.parseLong(numCarteTextBox.getText());
+                    String email = emailTextBox.getText();
+
+                    int numIntervenant = 1;
+                    String adresse = "RGPD";
+                    int points = 0;
+                    Client nouveauClient = new Client(nom, prenom, dateNaissance, numIntervenant, numCarte, email, adresse, points);
+                    Client.ajoutTXTClient(nouveauClient, "clients.txt");
+
+                    // Fermer la fenêtre après l'enregistrement
+                    dispose();
+                } catch (ParseException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Format de date incorrect. Veuillez utiliser le format dd/MM/yyyy.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Format du numéro de carte incorrect. Il doit être un nombre.", "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Ajout d'une action au bouton "Annuler"
+        annulerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Fermer la fenêtre lors de l'annulation
+                dispose();
+            }
+        });
 
         // Ajout des composants à la fenêtre
         add(mainPanel, BorderLayout.CENTER);

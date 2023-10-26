@@ -1,51 +1,89 @@
 package GUI;
 
+import autres.Article;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class NewArticle extends JFrame {
 
+    private JTextField codeBarreTextBox;
+    private JTextField intituleTextBox;
+    private JTextField prixTextBox;
+    private JTextField pointsTextBox;
+    private JTextField quTextBox;
+
     public NewArticle() {
         setTitle("Nouvel article");
-        setSize(450, 200);
+        setSize(450, 250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Layout principal
-        JPanel mainPanel = new JPanel(new GridLayout(4, 2));
+        JPanel mainPanel = new JPanel(new GridLayout(5, 2));
 
         // Label "Code Barre" + Textbox
         JLabel codeBarreLabel = new JLabel("Code Barre");
-        JTextField codeBarreTextBox = new JTextField();
-        codeBarreTextBox.setPreferredSize(new Dimension(codeBarreLabel.getPreferredSize().width, 10)); // Hauteur de 1 cm
+        codeBarreTextBox = new JTextField();
         mainPanel.add(codeBarreLabel);
         mainPanel.add(codeBarreTextBox);
 
         // Label "Intitulé" + Textbox
         JLabel intituleLabel = new JLabel("Intitulé");
-        JTextField intituleTextBox = new JTextField();
-        intituleTextBox.setPreferredSize(new Dimension(intituleLabel.getPreferredSize().width, 10)); // Hauteur de 1 cm
+        intituleTextBox = new JTextField();
         mainPanel.add(intituleLabel);
         mainPanel.add(intituleTextBox);
 
         // Label "Prix" + Textbox
         JLabel prixLabel = new JLabel("Prix");
-        JTextField prixTextBox = new JTextField();
-        prixTextBox.setPreferredSize(new Dimension(prixLabel.getPreferredSize().width, 10)); // Hauteur de 1 cm
+        prixTextBox = new JTextField();
         mainPanel.add(prixLabel);
         mainPanel.add(prixTextBox);
 
         // Label "Points" + Textbox
         JLabel pointsLabel = new JLabel("Points");
-        JTextField pointsTextBox = new JTextField();
-        pointsTextBox.setPreferredSize(new Dimension(pointsLabel.getPreferredSize().width, 10)); // Hauteur de 1 cm
+        pointsTextBox = new JTextField();
         mainPanel.add(pointsLabel);
         mainPanel.add(pointsTextBox);
+
+        // Label "Quantité" + Textbox
+        JLabel quLabel = new JLabel("Quantité");
+        quTextBox = new JTextField("0"); // Valeur par défaut à 0
+        mainPanel.add(quLabel);
+        mainPanel.add(quTextBox);
 
         // Boutons
         JPanel buttonsPanel = new JPanel(new FlowLayout());
         JButton enregistrerButton = new JButton("Enregistrer");
         JButton annulerButton = new JButton("Annuler");
+
+        // Action du bouton "Enregistrer"
+        enregistrerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    long codeBarre = Long.parseLong(codeBarreTextBox.getText());
+                    String intitule = intituleTextBox.getText();
+                    float prix = Float.parseFloat(prixTextBox.getText());
+                    float points = Float.parseFloat(pointsTextBox.getText());
+                    float qu = Float.parseFloat(quTextBox.getText());
+
+                    Article article = new Article(codeBarre, intitule, prix, qu, (int) points);
+                    Article.ajoutTXTArticle(article, "articles.txt");
+                    dispose(); // Ferme la fenêtre courante
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Veuillez entrer des valeurs numériques valides.", "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+
+        // Action du bouton "Annuler"
+        annulerButton.addActionListener(e -> {
+            dispose(); // Ferme la fenêtre courante
+        });
+
         buttonsPanel.add(enregistrerButton);
         buttonsPanel.add(annulerButton);
 
